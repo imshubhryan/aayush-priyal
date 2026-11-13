@@ -800,22 +800,25 @@ document.addEventListener('DOMContentLoaded', () => {
   }
 
   // 10.B WELCOME PAGE / OPEN INVITATION CONTROLLER
-  function triggerOpenInvitation() {
-    if (!welcomeScreen || welcomeScreen.classList.contains('opened')) return;
-
-    // Stop spawning new hearts
+  function triggerOpenInvitation(e) {
     stopHeartSpawning();
+    if (typeof window.openWeddingInvitation === 'function') {
+      window.openWeddingInvitation(e);
+      return;
+    }
+
+    if (!welcomeScreen || welcomeScreen.classList.contains('opened')) return;
 
     welcomeScreen.classList.add('opened');
     document.documentElement.classList.remove('welcome-active');
     document.body.classList.remove('welcome-active');
 
     // Automatically begin gentle wedding melody upon opening
-    if (!isPlaying) {
+    if (typeof isPlaying !== 'undefined' && !isPlaying) {
       try {
         startMusic();
-      } catch (e) {
-        console.warn('Audio auto-play on gesture warning:', e);
+      } catch (err) {
+        console.warn('Audio auto-play on gesture warning:', err);
       }
     }
 
@@ -834,13 +837,9 @@ document.addEventListener('DOMContentLoaded', () => {
     }, 950);
   }
 
-  window.openWeddingInvitation = triggerOpenInvitation;
-
   if (openInvitationBtn) {
-    openInvitationBtn.addEventListener('click', (e) => {
-      e.stopPropagation();
-      triggerOpenInvitation();
-    });
+    openInvitationBtn.addEventListener('click', triggerOpenInvitation);
+    openInvitationBtn.addEventListener('touchend', triggerOpenInvitation, { passive: false });
   }
 
   // 11. ROMANTIC AMBIENCE ENGINE FOR ALL NON-HERO SECTIONS

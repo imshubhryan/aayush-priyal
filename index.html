@@ -214,7 +214,7 @@
     </div>
 
     <!-- Floating Romantic Hearts Animation Container -->
-    <div id="floatingHeartsContainer" class="absolute inset-0 pointer-events-none overflow-hidden z-[30]" aria-hidden="true"></div>
+    <div id="floatingHeartsContainer" class="absolute inset-0 pointer-events-none overflow-hidden z-[10]" aria-hidden="true"></div>
 
     <!-- Desktop Ambient Side Badges (Screens >= 1024px) -->
     <div class="hidden lg:flex flex-col items-center justify-center absolute left-8 xl:left-20 top-1/2 -translate-y-1/2 z-10 max-w-[210px] text-center pointer-events-none opacity-85">
@@ -243,7 +243,7 @@
     </div>
 
     <!-- Central Invitation Card (Preserves exact 1024:1535 proportions of abc.jpeg on every screen) -->
-    <div class="welcome-card-wrapper relative z-20 h-full max-h-[100svh] w-full max-w-[460px] md:max-w-[490px] lg:max-w-[510px] sm:h-[95vh] sm:max-h-[820px] aspect-[1024/1535] flex items-center justify-center sm:rounded-[32px] sm:shadow-[0_25px_60px_-15px_rgba(81,39,50,0.28),0_0_0_1px_rgba(197,157,67,0.35)] overflow-hidden bg-[#faf6f0]">
+    <div class="welcome-card-wrapper relative z-30 h-full max-h-[100svh] w-full max-w-[460px] md:max-w-[490px] lg:max-w-[510px] sm:h-[95vh] sm:max-h-[820px] aspect-[1024/1535] flex items-center justify-center sm:rounded-[32px] sm:shadow-[0_25px_60px_-15px_rgba(81,39,50,0.28),0_0_0_1px_rgba(197,157,67,0.35)] overflow-hidden bg-[#faf6f0]">
       
       <!-- Base Image: assets/images/abc.jpeg -->
       <img src="assets/images/abc.jpeg" alt="Aayush &amp; Priyal Royal Wedding Invitation" class="welcome-card-img w-full h-full object-cover sm:object-cover select-none pointer-events-none" />
@@ -303,8 +303,8 @@
         </div>
 
         <!-- BOTTOM ACTION: "OPEN INVITATION" BUTTON & CREDITS -->
-        <div class="welcome-bottom-action w-full flex flex-col items-center pb-[7.5%] xs:pb-[8%] sm:pb-[5.5%] z-30 pointer-events-auto">
-          <button id="openInvitationBtn" class="open-invitation-btn group relative flex items-center justify-center gap-2 px-6 py-2 xs:py-2.5 sm:px-8 sm:py-3 rounded-full border border-[#c59d43]/80 bg-[#faf6f0]/95 hover:bg-[#512732] backdrop-blur-md shadow-[0_8px_25px_rgba(81,39,50,0.2)] hover:shadow-[0_12px_36px_rgba(81,39,50,0.4)] transition-all duration-300 transform hover:scale-[1.04] active:scale-[0.98] cursor-pointer" aria-label="Open Wedding Invitation">
+        <div class="welcome-bottom-action w-full flex flex-col items-center pb-[7.5%] xs:pb-[8%] sm:pb-[5.5%] z-40 pointer-events-auto cursor-pointer" onclick="window.openWeddingInvitation && window.openWeddingInvitation(event)" ontouchend="window.openWeddingInvitation && window.openWeddingInvitation(event)">
+          <button id="openInvitationBtn" type="button" onclick="window.openWeddingInvitation && window.openWeddingInvitation(event)" ontouchend="window.openWeddingInvitation && window.openWeddingInvitation(event)" class="open-invitation-btn group relative flex items-center justify-center gap-2 px-6 py-2 xs:py-2.5 sm:px-8 sm:py-3 rounded-full border border-[#c59d43]/80 bg-[#faf6f0]/95 hover:bg-[#512732] backdrop-blur-md shadow-[0_8px_25px_rgba(81,39,50,0.2)] hover:shadow-[0_12px_36px_rgba(81,39,50,0.4)] transition-all duration-300 transform hover:scale-[1.04] active:scale-[0.98] cursor-pointer" aria-label="Open Wedding Invitation">
             <span class="w-1.5 h-1.5 rounded-full bg-[#c59d43] group-hover:bg-[#f0dfea] transition-colors"></span>
             <span class="font-sans text-xs xs:text-[13px] sm:text-sm tracking-[0.26em] uppercase font-bold text-[#512732] group-hover:text-white transition-colors">
               OPEN INVITATION
@@ -330,6 +330,69 @@
 
     </div>
   </aside>
+
+  <!-- Immediate, Bulletproof Welcome Screen Transition Controller -->
+  <script>
+    (function() {
+      function openWeddingInvitation(e) {
+        if (e) {
+          if (typeof e.preventDefault === 'function') e.preventDefault();
+          if (typeof e.stopPropagation === 'function') e.stopPropagation();
+        }
+        var ws = document.getElementById('welcomeScreen');
+        if (!ws || ws.classList.contains('opened')) return;
+
+        ws.classList.add('opened');
+        document.documentElement.classList.remove('welcome-active');
+        document.body.classList.remove('welcome-active');
+
+        // Play wedding music safely
+        try {
+          var audio = document.getElementById('weddingBgMusic');
+          if (audio) {
+            audio.play().then(function() {
+              var btn = document.getElementById('heroPlayBtn');
+              if (btn) btn.classList.add('playing');
+              var w = document.getElementById('musicWidget');
+              if (w) w.classList.add('playing');
+            }).catch(function(err) {
+              console.warn('Audio autoplay prevented:', err);
+            });
+          }
+        } catch(audioErr) {}
+
+        // Smooth scroll to top/hero
+        try {
+          window.scrollTo({ top: 0, behavior: 'smooth' });
+        } catch(scrollErr) {}
+
+        setTimeout(function() {
+          ws.style.display = 'none';
+        }, 950);
+      }
+
+      window.openWeddingInvitation = openWeddingInvitation;
+
+      function attachEvents() {
+        var btn = document.getElementById('openInvitationBtn');
+        if (btn) {
+          btn.addEventListener('click', openWeddingInvitation);
+          btn.addEventListener('touchend', openWeddingInvitation, { passive: false });
+        }
+        var bottomAction = document.querySelector('.welcome-bottom-action');
+        if (bottomAction) {
+          bottomAction.addEventListener('click', openWeddingInvitation);
+          bottomAction.addEventListener('touchend', openWeddingInvitation, { passive: false });
+        }
+      }
+
+      if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', attachEvents);
+      } else {
+        attachEvents();
+      }
+    })();
+  </script>
 
   <svg aria-hidden="true" style="position: absolute; width: 0px; height: 0px; pointer-events: none;"><defs><filter color-interpolation-filters="sRGB" id="remove-black-bg"><feColorMatrix type="matrix" values="1 0 0 0 0  0 1 0 0 0  0 0 1 0 0  1.4 1.4 1.4 0 -0.15"></feColorMatrix></filter></defs></svg>
 

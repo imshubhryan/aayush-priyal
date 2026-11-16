@@ -352,6 +352,23 @@
         document.documentElement.classList.remove('welcome-active');
         document.body.classList.remove('welcome-active');
 
+        // Immediately ensure all scratch cards are crisp and rendered with 0-second delay
+        if (typeof window.refreshAllScratchCards === 'function') {
+          window.refreshAllScratchCards(true);
+        }
+        if (window.requestAnimationFrame) {
+          window.requestAnimationFrame(function() {
+            if (typeof window.refreshAllScratchCards === 'function') {
+              window.refreshAllScratchCards(false);
+            }
+          });
+        }
+        setTimeout(function() {
+          if (typeof window.refreshAllScratchCards === 'function') {
+            window.refreshAllScratchCards(false);
+          }
+        }, 120);
+
         // Play wedding music safely
         try {
           var audio = document.getElementById('weddingBgMusic');
@@ -2210,6 +2227,62 @@
         ctx.restore();
       }
 
+      function getCardDimensions(cardObj) {
+        const wrap = document.getElementById(cardObj.wrapId);
+        const canvas = document.getElementById(cardObj.canvasId);
+        if (wrap) {
+          const wrapRect = wrap.getBoundingClientRect();
+          if (wrapRect.width > 40 && wrapRect.height > 60) {
+            const pad = window.innerWidth >= 640 ? 8 : 4;
+            return {
+              w: Math.max(80, wrapRect.width - pad),
+              h: Math.max(160, wrapRect.height - pad)
+            };
+          }
+        }
+        if (canvas) {
+          const canvasRect = canvas.getBoundingClientRect();
+          if (canvasRect.width > 40 && canvasRect.height > 60) {
+            return { w: canvasRect.width, h: canvasRect.height };
+          }
+        }
+        const isLg = window.innerWidth >= 1024;
+        const isMd = window.innerWidth >= 768;
+        const isSm = window.innerWidth >= 640;
+        const isXs = window.innerWidth >= 400;
+        const w = isLg ? 232 : (isMd ? 216 : (isSm ? 192 : (isXs ? 108 : 96)));
+        const h = isLg ? 337 : (isMd ? 337 : (isSm ? 317 : (isXs ? 291 : 256)));
+        return { w, h };
+      }
+
+      function refreshScratchCanvas(cardObj, force) {
+        const canvas = document.getElementById(cardObj.canvasId);
+        if (!canvas) return;
+        const state = scratchStates[cardObj.id];
+        if (state && state.isRevealed) return;
+        if (state && state.scratchStrokeCount > 0 && !force) return;
+
+        const dims = getCardDimensions(cardObj);
+        const dpr = Math.min(window.devicePixelRatio || 1, 2);
+        const targetW = Math.round(dims.w * dpr);
+        const targetH = Math.round(dims.h * dpr);
+
+        if (!force && canvas.width === targetW && canvas.height === targetH && canvas.getAttribute('data-rendered') === 'true') {
+          return;
+        }
+
+        canvas.width = targetW;
+        canvas.height = targetH;
+        renderGoldSurface(canvas, cardObj);
+        canvas.setAttribute('data-rendered', 'true');
+      }
+
+      function refreshAllScratchCards(force) {
+        cardsData.forEach(card => refreshScratchCanvas(card, force));
+      }
+
+      window.refreshAllScratchCards = refreshAllScratchCards;
+
       function setupCardInteraction(cardObj) {
         const canvas = document.getElementById(cardObj.canvasId);
         const wrap = document.getElementById(cardObj.wrapId);
@@ -2233,18 +2306,10 @@
         if (progEl) {
           progEl.textContent = '0%';
           progEl.style.opacity = '0.9';
-          progEl.className = 'absolute top-3 right-3 z-30 pointer-events-none opacity-90 bg-[#512732]/90 backdrop-blur-sm text-[11px] font-sans font-bold text-[#f0dfea] px-2.5 py-0.5 rounded-full border border-[#f0dfea]/30 shadow-sm transition-all';
+          progEl.className = 'absolute top-1.5 right-1.5 sm:top-2.5 sm:right-2.5 z-30 pointer-events-none opacity-90 bg-[#512732]/90 backdrop-blur-sm text-[8px] sm:text-[10px] font-sans font-bold text-[#faf6f0] px-1.5 sm:px-2 py-0.5 rounded-full border border-[#d9c4aa]/40 shadow-sm transition-all';
         }
 
-        // Initialize canvas internal resolution to crisp dimensions
-        const rect = canvas.getBoundingClientRect();
-        const dpr = Math.min(window.devicePixelRatio || 1, 2);
-        const w = (rect.width && rect.width > 50) ? rect.width : 280;
-        const h = (rect.height && rect.height > 50) ? rect.height : 388;
-        canvas.width = Math.round(w * dpr);
-        canvas.height = Math.round(h * dpr);
-
-        renderGoldSurface(canvas, cardObj);
+        refreshScratchCanvas(cardObj, true);
 
         const ctx = canvas.getContext('2d', { willReadFrequently: true });
 
@@ -2389,20 +2454,38 @@
         initAllCards();
       }
 
-      window.addEventListener('load', () => {
-        // Ensure scratch canvas surface is properly rendered after all images/styles load
-        cardsData.forEach(card => {
-          const canvas = document.getElementById(card.canvasId);
-          if (canvas && scratchStates[card.id] && !scratchStates[card.id].isRevealed) {
-            const rect = canvas.getBoundingClientRect();
-            if (rect.width > 50) {
-              const dpr = Math.min(window.devicePixelRatio || 1, 2);
-              canvas.width = Math.round(rect.width * dpr);
-              canvas.height = Math.round(rect.height * dpr);
-              renderGoldSurface(canvas, card);
+      // ResizeObserver to immediately adapt when layout size is known
+      if (window.ResizeObserver) {
+        const ro = new ResizeObserver((entries) => {
+          for (const entry of entries) {
+            if (entry.contentRect.width > 40) {
+              const targetCard = cardsData.find(c => c.wrapId === entry.target.id);
+              if (targetCard) {
+                refreshScratchCanvas(targetCard, false);
+              }
             }
           }
         });
+        cardsData.forEach(card => {
+          const wrap = document.getElementById(card.wrapId);
+          if (wrap) ro.observe(wrap);
+        });
+      }
+
+      // Keep canvases sharp and updated on font ready or viewport change
+      if (document.fonts && document.fonts.ready) {
+        document.fonts.ready.then(() => {
+          refreshAllScratchCards(false);
+        });
+      }
+
+      window.addEventListener('resize', () => {
+        refreshAllScratchCards(false);
+      }, { passive: true });
+
+      window.addEventListener('load', () => {
+        // Safe check without wiping already painted canvases
+        refreshAllScratchCards(false);
       });
 
       const instantRevealBtn = document.getElementById('instantRevealBtn');

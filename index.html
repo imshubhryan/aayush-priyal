@@ -251,76 +251,81 @@
       <!-- OVERLAY OVER abc.png (Faithful recreation of reference image) -->
       <div class="welcome-overlay-content absolute inset-0 flex flex-col justify-between items-center select-none pointer-events-none">
         
-        <!-- TOP ARCHWAY TYPOGRAPHY (Aligned precisely within the dark maroon Mughal arch) -->
-        <div class="welcome-top-group flex flex-col items-center text-center w-full px-6 pt-[5%] xs:pt-[5.5%] sm:pt-[5%]">
+        <!-- TOP ARCHWAY TYPOGRAPHY: Lotus + WELCOME TO + Our Wedding + Heart Divider -->
+        <div class="welcome-top-group flex flex-col items-center text-center w-full px-6 pt-[6%] xs:pt-[6.5%] sm:pt-[5.5%]">
           
           <!-- Golden Lotus Motif -->
           <div class="welcome-lotus-wrap flex items-center justify-center mb-1 xs:mb-1.5">
-            <svg class="w-6 xs:w-7 sm:w-8 h-auto text-[#f5d9aa] drop-shadow-sm" viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
-              <path d="M16 2 C14 7, 14 13, 16 19 C18 13, 18 7, 16 2 Z" fill="rgba(245,217,170,0.2)"/>
-              <path d="M16 9 C11 7, 7 11, 7 17 C10 17, 14 16, 16 14" fill="rgba(245,217,170,0.15)"/>
-              <path d="M16 9 C21 7, 25 11, 25 17 C22 17, 18 16, 16 14" fill="rgba(245,217,170,0.15)"/>
+            <svg class="w-6 xs:w-7 sm:w-8 h-auto text-[#eed7b2] drop-shadow-sm" viewBox="0 0 32 24" fill="none" stroke="currentColor" stroke-width="1.3" stroke-linecap="round" stroke-linejoin="round">
+              <path d="M16 2 C14 7, 14 13, 16 19 C18 13, 18 7, 16 2 Z" fill="rgba(238,215,178,0.2)"/>
+              <path d="M16 9 C11 7, 7 11, 7 17 C10 17, 14 16, 16 14" fill="rgba(238,215,178,0.15)"/>
+              <path d="M16 9 C21 7, 25 11, 25 17 C22 17, 18 16, 16 14" fill="rgba(238,215,178,0.15)"/>
               <path d="M16 13 C10 14, 4 16, 3 18 C8 19, 13 18, 16 16" />
               <path d="M16 13 C22 14, 28 16, 29 18 C24 19, 19 18, 16 16" />
               <circle cx="16" cy="19" r="1.1" fill="currentColor"/>
             </svg>
           </div>
 
-          <!-- "WELCOME TO OUR WEDDING" -->
-          <div class="flex flex-col items-center leading-none text-center">
-            <span class="font-sans text-[8.5px] xs:text-[9.5px] sm:text-[11px] tracking-[0.32em] text-[#f7e7ce] uppercase font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)]">
-              WELCOME TO
-            </span>
-            <span class="font-sans text-[8.5px] xs:text-[9.5px] sm:text-[11px] tracking-[0.34em] text-[#f7e7ce] uppercase font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.7)] mt-0.5 sm:mt-1">
-              OUR WEDDING
-            </span>
-          </div>
+          <!-- "WELCOME TO" in clean, tracked uppercase -->
+          <span class="font-sans text-[9px] xs:text-[10px] sm:text-[11px] tracking-[0.34em] text-[#eed7b2] uppercase font-semibold drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">
+            WELCOME TO
+          </span>
 
-          <!-- Heart Divider: — ❤ — -->
-          <div class="flex items-center justify-center gap-2 my-1 xs:my-1.5 opacity-90">
-            <span class="w-6 xs:w-8 h-[1px] bg-gradient-to-r from-transparent to-[#f5d9aa]"></span>
-            <span class="text-[#f5d9aa] text-[9px] xs:text-[10px] drop-shadow-sm">❤</span>
-            <span class="w-6 xs:w-8 h-[1px] bg-gradient-to-l from-transparent to-[#f5d9aa]"></span>
-          </div>
+          <!-- "Our Wedding" in Authentic Cursive Calligraphy -->
+          <h2 class="welcome-wedding-script font-calligraphy text-[#ffffff] text-[2.4rem] xs:text-[2.75rem] sm:text-[3.1rem] leading-[1.0] tracking-wide text-center drop-shadow-[0_2px_10px_rgba(0,0,0,0.9)] mt-0.5 mb-1">
+            Our Wedding
+          </h2>
 
-          <!-- "Aayush & Priyal" in Authentic Cursive Calligraphy -->
-          <h1 class="welcome-couple-title font-calligraphy text-[#ffffff] text-[2.4rem] xs:text-[2.85rem] sm:text-[3.3rem] leading-[1.05] tracking-wide text-center drop-shadow-[0_2px_12px_rgba(0,0,0,0.8)] my-0.5">
-            Aayush &amp; Priyal
-          </h1>
-
-          <!-- Delicate Floral Flourish Underneath -->
-          <div class="flex items-center justify-center w-full mt-0.5 xs:mt-1 opacity-85">
-            <svg class="w-24 xs:w-28 sm:w-32 h-auto text-[#f5d9aa] drop-shadow-sm" viewBox="0 0 100 12" fill="none" stroke="currentColor" stroke-width="1.2" stroke-linecap="round">
-              <path d="M10 6 C25 2, 40 10, 50 6 C60 2, 75 10, 90 6"/>
-              <path d="M30 4 C32 2, 35 3, 36 5"/>
-              <path d="M42 7 C44 9, 47 8, 48 6"/>
-              <path d="M58 7 C60 9, 63 8, 64 6"/>
-              <path d="M70 4 C72 2, 75 3, 76 5"/>
-              <circle cx="50" cy="6" r="1.4" fill="currentColor"/>
-            </svg>
+          <!-- Delicate Golden Line with Heart: — ❤ — -->
+          <div class="flex items-center justify-center gap-2 mt-0.5 opacity-90">
+            <span class="w-12 xs:w-16 h-[1px] bg-gradient-to-r from-transparent via-[#eed7b2] to-[#eed7b2]/40"></span>
+            <span class="text-[#eed7b2] text-[8.5px] xs:text-[9.5px] drop-shadow-sm">❤</span>
+            <span class="w-12 xs:w-16 h-[1px] bg-gradient-to-l from-transparent via-[#eed7b2] to-[#eed7b2]/40"></span>
           </div>
 
         </div>
 
-        <!-- BOTTOM ACTION: "OPEN INVITATION" BUTTON & CREDITS -->
-        <div class="welcome-bottom-action w-full flex flex-col items-center pb-[7%] xs:pb-[7.5%] sm:pb-[5.5%] z-40 pointer-events-auto cursor-pointer" onclick="window.openWeddingInvitation && window.openWeddingInvitation(event)" ontouchend="window.openWeddingInvitation && window.openWeddingInvitation(event)">
-          <button id="openInvitationBtn" type="button" onclick="window.openWeddingInvitation && window.openWeddingInvitation(event)" ontouchend="window.openWeddingInvitation && window.openWeddingInvitation(event)" class="open-invitation-btn group relative flex items-center justify-center gap-2 px-6 py-2 xs:py-2.5 sm:px-8 sm:py-3 rounded-full border border-[#c59d43]/85 bg-[#faf6f0]/95 hover:bg-[#512732] backdrop-blur-md shadow-[0_8px_25px_rgba(0,0,0,0.35)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.55)] transition-all duration-300 transform hover:scale-[1.04] active:scale-[0.98] cursor-pointer" aria-label="Open Wedding Invitation">
-            <span class="w-1.5 h-1.5 rounded-full bg-[#c59d43] group-hover:bg-[#f0dfea] transition-colors"></span>
-            <span class="font-sans text-xs xs:text-[13px] sm:text-sm tracking-[0.26em] uppercase font-bold text-[#512732] group-hover:text-white transition-colors">
-              OPEN INVITATION
-            </span>
-            <svg class="w-3.5 h-3.5 text-[#c59d43] group-hover:text-white transition-all transform group-hover:translate-y-0.5" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24">
-              <path stroke-linecap="round" stroke-linejoin="round" d="M19.5 8.25l-7.5 7.5-7.5-7.5" />
+        <!-- BOTTOM ACTION: Aayush & Priyal + Open Invitation Button + Subtitle & Credits -->
+        <div class="welcome-bottom-action w-full flex flex-col items-center pb-[4.5%] xs:pb-[5%] sm:pb-[4%] z-40 pointer-events-auto cursor-pointer" onclick="window.openWeddingInvitation && window.openWeddingInvitation(event)" ontouchend="window.openWeddingInvitation && window.openWeddingInvitation(event)">
+          
+          <!-- "Aayush & Priyal" in flowing calligraphy above the button -->
+          <h1 class="welcome-couple-title font-calligraphy text-[#ffffff] text-[2.45rem] xs:text-[2.85rem] sm:text-[3.3rem] leading-[1.05] tracking-wide text-center drop-shadow-[0_2px_12px_rgba(0,0,0,0.95)] mb-1">
+            Aayush &amp; Priyal
+          </h1>
+
+          <!-- Delicate Golden Divider Under Names: — ❖ — -->
+          <div class="flex items-center justify-center gap-2 mb-3 xs:mb-3.5 opacity-85">
+            <span class="w-10 xs:w-14 h-[1px] bg-gradient-to-r from-transparent to-[#eed7b2]"></span>
+            <svg class="w-2.5 h-2.5 text-[#eed7b2] drop-shadow-sm" viewBox="0 0 24 24" fill="currentColor">
+              <path d="M12 2L15 9L22 12L15 15L12 22L9 15L2 12L9 9L12 2Z"/>
             </svg>
+            <span class="w-10 xs:w-14 h-[1px] bg-gradient-to-l from-transparent to-[#eed7b2]"></span>
+          </div>
+
+          <!-- Open Invitation Button with Arrow: "Open Invitation →" -->
+          <button id="openInvitationBtn" type="button" onclick="window.openWeddingInvitation && window.openWeddingInvitation(event)" ontouchend="window.openWeddingInvitation && window.openWeddingInvitation(event)" class="open-invitation-btn group relative flex items-center justify-center gap-2 px-8 py-2.5 xs:px-9 xs:py-3 sm:px-10 sm:py-3.5 rounded-full border border-[#eed2a4]/90 bg-gradient-to-r from-[#fbf2e3] via-[#eed7b2] to-[#fbf2e3] hover:from-[#eed7b2] hover:to-[#fbf2e3] shadow-[0_8px_25px_rgba(0,0,0,0.45)] hover:shadow-[0_12px_36px_rgba(0,0,0,0.65)] transition-all duration-300 transform hover:scale-[1.03] active:scale-[0.98] cursor-pointer" aria-label="Open Wedding Invitation">
+            <span class="font-serif italic font-semibold text-sm xs:text-[15px] sm:text-base text-[#4a1823] tracking-wide transition-colors">
+              Open Invitation
+            </span>
+            <span class="text-[#4a1823] text-sm xs:text-base font-bold transition-transform group-hover:translate-x-1">→</span>
           </button>
-          <span class="font-sans text-[7.5px] xs:text-[8.5px] tracking-[0.22em] uppercase text-[#fbf4eb]/95 font-bold mt-1.5 drop-shadow-[0_1px_4px_rgba(0,0,0,0.85)]">
-            CLICK TO ENTER CELEBRATION
+
+          <!-- "Click to Enter Celebration" -->
+          <span class="font-serif italic text-[11px] xs:text-[12px] sm:text-[13px] text-[#f5dfc6] tracking-wide mt-2.5 drop-shadow-[0_1px_4px_rgba(0,0,0,0.9)]">
+            Click to Enter Celebration
           </span>
 
-          <!-- Rohit Photography Credit on Welcome Screen (Harmonized with Deep Maroon & Gold) -->
-          <div class="mt-1.5 inline-flex items-center gap-1.5">
-            <svg class="w-2.5 h-2.5 text-[#f5d9aa] flex-shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.8)]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
-            <span class="font-sans text-[8px] xs:text-[9px] tracking-wide text-[#f7e7ce] drop-shadow-[0_1px_3px_rgba(0,0,0,0.85)]">
+          <!-- Small delicate golden ornament under Click to Enter Celebration: — ❖ — -->
+          <div class="flex items-center justify-center gap-1.5 my-1.5 opacity-75">
+            <span class="w-3.5 h-[1px] bg-[#eed7b2]"></span>
+            <span class="text-[#eed7b2] text-[7px]">❖</span>
+            <span class="w-3.5 h-[1px] bg-[#eed7b2]"></span>
+          </div>
+
+          <!-- Rohit Photography Credit on Welcome Screen -->
+          <div class="inline-flex items-center gap-1.5">
+            <svg class="w-2.5 h-2.5 text-[#eed7b2] flex-shrink-0 drop-shadow-[0_1px_2px_rgba(0,0,0,0.9)]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 21.35l-1.45-1.32C5.4 15.36 2 12.28 2 8.5 2 5.42 4.42 3 7.5 3c1.74 0 3.41.81 4.5 2.09C13.09 3.81 14.76 3 16.5 3 19.58 3 22 5.42 22 8.5c0 3.78-3.4 6.86-8.55 11.54L12 21.35z"></path></svg>
+            <span class="font-sans text-[8px] xs:text-[9px] tracking-wide text-[#eed7b2] drop-shadow-[0_1px_3px_rgba(0,0,0,0.95)]">
               Designed with Love by <strong class="font-serif font-bold text-[#ffffff]">Rohit Photography</strong>
             </span>
           </div>

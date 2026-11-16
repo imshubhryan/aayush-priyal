@@ -70,12 +70,15 @@ document.addEventListener('DOMContentLoaded', () => {
 
       if (heroContent) {
         heroContent.style.opacity = `${Math.max(0, 1 - progress * 1.25)}`;
-        heroContent.style.transform = `translateY(-${scrollY * 0.22}px)`;
+        heroContent.style.transform = `translate3d(0, -${scrollY * 0.22}px, 0)`;
       }
 
       if (heroBg) {
-        heroBg.style.transform = `scale(${1 + progress * 0.08})`;
-        heroBg.style.filter = `brightness(${1 - progress * 0.35})`;
+        heroBg.style.transform = `translate3d(0, 0, 0) scale(${1 + progress * 0.08})`;
+      }
+      const heroOverlay = document.querySelector('.hero-overlay');
+      if (heroOverlay) {
+        heroOverlay.style.opacity = `${Math.min(0.85, 0.35 + progress * 0.5)}`;
       }
     }
 

@@ -1512,20 +1512,40 @@
         }
 
         function goToSlide(idx) {
-          currentIndex = Math.max(0, Math.min(total - 1, idx));
+          currentIndex = ((idx % total) + total) % total;
           update3DLayout();
         }
 
         function nextSlide() {
-          if (currentIndex < total - 1) {
-            goToSlide(currentIndex + 1);
-          }
+          goToSlide(currentIndex + 1);
         }
 
         function prevSlide() {
-          if (currentIndex > 0) {
-            goToSlide(currentIndex - 1);
-          }
+          goToSlide(currentIndex - 1);
+        }
+
+        // Autoplay slideshow runs continuously and loops seamlessly
+        let autoplayInterval = null;
+        let resumeTimeout = null;
+
+        function startAutoplay() {
+          if (autoplayInterval) clearInterval(autoplayInterval);
+          autoplayInterval = setInterval(() => {
+            nextSlide();
+          }, 3800);
+        }
+
+        function stopAutoplay() {
+          if (autoplayInterval) clearInterval(autoplayInterval);
+          autoplayInterval = null;
+        }
+
+        function pauseAndResumeAutoplay(delay = 4500) {
+          stopAutoplay();
+          if (resumeTimeout) clearTimeout(resumeTimeout);
+          resumeTimeout = setTimeout(() => {
+            startAutoplay();
+          }, delay);
         }
 
         // Left / Right Buttons ONLY switch slides, NEVER scroll page
@@ -1533,6 +1553,7 @@
           nextBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             nextSlide();
+            pauseAndResumeAutoplay();
           });
         }
 
@@ -1540,6 +1561,7 @@
           prevBtn.addEventListener('click', (e) => {
             e.stopPropagation();
             prevSlide();
+            pauseAndResumeAutoplay();
           });
         }
 
@@ -1548,6 +1570,7 @@
           card.addEventListener('click', (e) => {
             e.stopPropagation();
             goToSlide(idx);
+            pauseAndResumeAutoplay();
           });
         });
 
@@ -1559,8 +1582,10 @@
 
           if (e.key === 'ArrowRight') {
             nextSlide();
+            pauseAndResumeAutoplay();
           } else if (e.key === 'ArrowLeft') {
             prevSlide();
+            pauseAndResumeAutoplay();
           }
         });
 
@@ -1570,6 +1595,7 @@
         stage.addEventListener('pointerdown', (e) => {
           startX = e.clientX;
           isPointerDown = true;
+          stopAutoplay();
         });
 
         window.addEventListener('pointerup', (e) => {
@@ -1583,25 +1609,8 @@
               prevSlide();
             }
           }
+          pauseAndResumeAutoplay();
         });
-
-        // Autoplay slideshow runs automatically while on gallery slide
-        let isAutoPlaying = true;
-        let autoplayInterval = null;
-
-        function startAutoplay() {
-          if (autoplayInterval) clearInterval(autoplayInterval);
-          autoplayInterval = setInterval(() => {
-            goToSlide((currentIndex + 1) % total);
-          }, 4500);
-          isAutoPlaying = true;
-        }
-
-        function stopAutoplay() {
-          if (autoplayInterval) clearInterval(autoplayInterval);
-          autoplayInterval = null;
-          isAutoPlaying = false;
-        }
 
         if (container) {
           container.addEventListener('mouseenter', stopAutoplay);
@@ -1609,10 +1618,6 @@
         }
 
         // --- SCROLL-DRIVEN CAROUSEL INTERACTION ---
-        // Mouse wheel / Touchpad scroll:
-        // Steps through Photo 1 (0) to Photo 8 (7).
-        // Only when the user has seen all 8 photos (currentIndex === 7) does scrolling DOWN continue to next page.
-        // Only when the user is back at Photo 1 (currentIndex === 0) does scrolling UP continue to previous page.
         let accumulatedDelta = 0;
         let lastStepTime = 0;
         const stepCooldown = 320; // ms
@@ -1642,7 +1647,7 @@
               lastStepTime = now;
               accumulatedDelta = 0;
               goToSlide(currentIndex + 1);
-              stopAutoplay();
+              pauseAndResumeAutoplay();
             }
             return;
           }
@@ -1656,14 +1661,11 @@
               lastStepTime = now;
               accumulatedDelta = 0;
               goToSlide(currentIndex - 1);
-              stopAutoplay();
+              pauseAndResumeAutoplay();
             }
             return;
           }
 
-          // If at last photo (currentIndex === 7) and scrolling down:
-          // OR at first photo (currentIndex === 0) and scrolling up:
-          // Do NOT preventDefault! Page scrolls naturally to next / previous section!
           accumulatedDelta = 0;
         }
 
@@ -1694,7 +1696,7 @@
               lastTouchTime = now;
               touchStartY = currentY;
               goToSlide(currentIndex + 1);
-              stopAutoplay();
+              pauseAndResumeAutoplay();
             }
           } else if (diffY < -40 && currentIndex > 0) {
             if (e.cancelable) e.preventDefault();
@@ -1702,7 +1704,7 @@
               lastTouchTime = now;
               touchStartY = currentY;
               goToSlide(currentIndex - 1);
-              stopAutoplay();
+              pauseAndResumeAutoplay();
             }
           }
         }, { passive: false });

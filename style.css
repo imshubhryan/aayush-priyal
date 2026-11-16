@@ -262,7 +262,6 @@ html {
 .fullscreen-slide,
 #scratch-section,
 #wedding-details-section,
-#family-blessings-section,
 #wedding-gallery-section,
 #rsvp-venue-section,
 #compliments-section {
@@ -309,26 +308,7 @@ html {
   font-family: 'Instrument Serif', Georgia, serif !important;
 }
 
-/* Section 3: Family Blessings - Luxury Royal Lineage */
-#family-blessings-section {
-  background: radial-gradient(circle at 50% 30%, rgba(250, 243, 235, 0.7) 0%, rgba(251, 248, 244, 1) 80%) !important;
-}
 
-#family-blessings-section .blessings-title,
-#family-blessings-section h2 {
-  font-family: 'Instrument Serif', Georgia, serif !important;
-  font-style: italic !important;
-  font-weight: 400 !important;
-  color: #512732 !important;
-  letter-spacing: normal !important;
-}
-
-#family-blessings-section .person-name {
-  font-family: 'Instrument Serif', Georgia, serif !important;
-  font-weight: 400 !important;
-  letter-spacing: normal !important;
-  color: #512732 !important;
-}
 
 /* The Celebrations section: Dedicated natural flow vertical timeline */
 #celebrations-section {
@@ -401,7 +381,6 @@ html {
   .fullscreen-slide,
   #scratch-section,
   #wedding-details-section,
-  #family-blessings-section,
   #wedding-gallery-section,
   #rsvp-venue-section,
   #compliments-section {

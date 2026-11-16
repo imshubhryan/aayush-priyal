@@ -361,6 +361,18 @@
           }
         } catch(audioErr) {}
 
+        // Start hero background video safely on user gesture
+        try {
+          var heroVid = document.getElementById('heroVideo');
+          if (heroVid) {
+            heroVid.muted = true;
+            heroVid.defaultMuted = true;
+            if (heroVid.paused) {
+              heroVid.play().catch(function() {});
+            }
+          }
+        } catch(vidErr) {}
+
         // Smooth scroll to top/hero
         try {
           window.scrollTo({ top: 0, behavior: 'smooth' });
@@ -426,28 +438,26 @@
     <!-- HERO SECTION (ORIGINAL: CLEAN FULLSCREEN VIDEO + EDITORIAL TYPOGRAPHY, NO EXTRA BG DESIGNS) -->
     <section class="hero hero-fullscreen" id="hero">
       <div class="hero-bg-wrapper">
-        <video class="hero-bg-video" autoplay loop muted playsinline poster="assets/images/wi66qwpZ8JDszs2uCEeW3nruE.jpg" id="heroVideo">
+        <video class="hero-bg-video" autoplay loop muted playsinline webkit-playsinline preload="auto" poster="assets/images/a.jpeg" id="heroVideo">
           <source media="(max-width: 767px)" src="assets/vids/mob.mp4" type="video/mp4">
-          <source media="(min-width: 768px)" src="assets/vids/Sequence 08_1.mp4" type="video/mp4">
-          <source src="assets/vids/Sequence 08_1.mp4" type="video/mp4">
+          <source media="(min-width: 768px)" src="assets/vids/Sequence%2008_1.mp4" type="video/mp4">
+          <source src="assets/vids/Sequence%2008_1.mp4" type="video/mp4">
         </video>
         <script>
           (function() {
             var v = document.getElementById('heroVideo');
             if (!v) return;
-            function updateHeroVideoSource() {
-              var isMobile = window.innerWidth < 768;
-              var targetSrc = isMobile ? 'assets/vids/mob.mp4' : 'assets/vids/Sequence 08_1.mp4';
-              var current = v.currentSrc || v.src || '';
-              var targetFile = isMobile ? 'mob.mp4' : 'Sequence';
-              if (!current.includes(targetFile)) {
-                v.src = targetSrc;
-                v.load();
+            v.muted = true;
+            v.defaultMuted = true;
+            function tryPlay() {
+              if (v && v.paused) {
                 v.play().catch(function() {});
               }
             }
-            updateHeroVideoSource();
-            window.addEventListener('resize', updateHeroVideoSource);
+            tryPlay();
+            ['click', 'touchstart', 'touchend', 'scroll'].forEach(function(evt) {
+              window.addEventListener(evt, tryPlay, { once: true, passive: true });
+            });
           })();
         </script>
         <div class="hero-overlay"></div>
@@ -1507,8 +1517,7 @@
     </div> <!-- /.content-over-hero -->
   </main>
 
-  <script src="assets/lenis.js"></script>
-  <script src="script.js"></script>
+  <script type="module" src="./script.js"></script>
 
   <!-- React Bits Pro: 3D Gradient Carousel Controller with Clean Scroll-Driven Progression -->
   <script data-purpose="gradient-carousel-3d-controller">

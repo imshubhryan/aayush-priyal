@@ -971,8 +971,8 @@ document.addEventListener('DOMContentLoaded', () => {
     function checkVisibility() {
       if (!heroSection) return;
       const heroRect = heroSection.getBoundingClientRect();
-      const scrollPos = window.scrollY || window.pageYOffset || document.documentElement.scrollTop;
-      const scrolledPastHero = scrollPos > 60 || heroRect.bottom <= window.innerHeight * 0.75;
+      const scrollPos = window.scrollY || window.pageYOffset || document.documentElement.scrollTop || (document.body ? document.body.scrollTop : 0);
+      const scrolledPastHero = scrollPos > 30 || heroRect.bottom <= window.innerHeight * 0.9;
 
       if (scrolledPastHero && !isCanvasActive) {
         isCanvasActive = true;
@@ -992,11 +992,12 @@ document.addEventListener('DOMContentLoaded', () => {
     }
 
     window.addEventListener('scroll', checkVisibility, { passive: true });
-    window.addEventListener('wheel', () => setTimeout(checkVisibility, 50), { passive: true });
-    window.addEventListener('touchmove', () => setTimeout(checkVisibility, 50), { passive: true });
+    document.addEventListener('scroll', checkVisibility, { passive: true });
+    window.addEventListener('wheel', () => setTimeout(checkVisibility, 40), { passive: true });
+    window.addEventListener('touchmove', () => setTimeout(checkVisibility, 40), { passive: true });
     // Initial check and periodic liveness
-    setTimeout(checkVisibility, 200);
-    setInterval(checkVisibility, 1000);
+    setTimeout(checkVisibility, 150);
+    setInterval(checkVisibility, 600);
 
     // Interactive Touch / Click Hearts in all content sections
     if (contentOverHero) {

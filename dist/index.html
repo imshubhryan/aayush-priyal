@@ -66,9 +66,10 @@
 
   <!-- Custom Styles: Scoped to content-over-hero so Hero Section stays completely untouched -->
   <style data-purpose="custom-background-and-texture">
-    /* 1 Section = Exactly 1 Full Page (100svh) with Snappy Slide-by-Slide Navigation */
+    /* Smooth Scrolling with Natural Section Snapping */
     html {
-      scroll-snap-type: y mandatory !important;
+      scroll-behavior: smooth !important;
+      scroll-snap-type: y proximity !important;
     }
 
     .snap-fullscreen {
@@ -76,7 +77,7 @@
       height: 100svh !important;
       max-height: 100svh !important;
       scroll-snap-align: start !important;
-      scroll-snap-stop: always !important;
+      scroll-snap-stop: normal !important;
       display: flex !important;
       flex-direction: column !important;
       justify-content: center !important;
@@ -193,8 +194,8 @@
       }
     }
   </style>
-  <script type="module" crossorigin src="./assets/index-uCEp0UbF.js"></script>
-  <link rel="stylesheet" crossorigin href="./assets/index-Safr8Onb.css">
+  <script type="module" crossorigin src="./assets/index-CXQOUYQM.js"></script>
+  <link rel="stylesheet" crossorigin href="./assets/index-Ckjzj-HR.css">
 </head>
 <body class="selection:bg-gold-300 selection:text-deepMaroon welcome-active">
 
@@ -2709,6 +2710,29 @@
         btn.addEventListener('click', (e) => {
           const venueKey = e.currentTarget.getAttribute('data-venue');
           selectVenue(venueKey);
+        });
+      });
+    });
+  </script>
+
+  <!-- Universal Smooth Scroll Handler for Anchor Links & Buttons -->
+  <script data-purpose="smooth-scroll-controller">
+    document.addEventListener('DOMContentLoaded', () => {
+      document.querySelectorAll('a[href^="#"]').forEach(anchor => {
+        anchor.addEventListener('click', function(e) {
+          const href = this.getAttribute('href');
+          if (!href || href === '#' || href === '#!') return;
+          const target = document.querySelector(href);
+          if (target) {
+            e.preventDefault();
+            target.scrollIntoView({
+              behavior: 'smooth',
+              block: 'start'
+            });
+            if (window.history && window.history.pushState) {
+              window.history.pushState(null, '', href);
+            }
+          }
         });
       });
     });

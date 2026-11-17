@@ -1325,48 +1325,50 @@
           </header>
 
           <div class="w-full text-left my-auto">
-            <div class="relative rounded-3xl p-1 bg-gradient-to-b from-gold-300 via-gold-500 to-gold-600 gold-card-shadow flex flex-col">
-              <div class="w-full h-full rounded-[22px] bg-white/95 backdrop-blur-sm p-3.5 xs:p-4 sm:p-7 md:p-8 flex flex-col justify-between border border-gold-300/40 relative overflow-hidden">
-                <div class="flex items-center justify-center gap-1 sm:gap-1.5 p-1 rounded-full bg-white/95 border border-gold-400/40 mb-2 sm:mb-4 max-w-xl mx-auto w-full" id="venue-tabs-bar" role="tablist">
-                  <button aria-selected="true" class="venue-tab-btn flex-1 py-1.5 px-1.5 sm:px-2 rounded-full text-[10px] xs:text-[11px] sm:text-xs font-sans tracking-wide font-semibold transition-all duration-300 bg-[#512732] text-[#fbf7ee] shadow-sm whitespace-nowrap" data-venue="vivah" type="button">Wedding</button>
-                  <button aria-selected="false" class="venue-tab-btn flex-1 py-1.5 px-1.5 sm:px-2 rounded-full text-[10px] xs:text-[11px] sm:text-xs font-sans tracking-wide font-semibold transition-all duration-300 text-[#6b3844] hover:text-[#512732] hover:bg-[#f0dfea]/40 whitespace-nowrap" data-venue="reception" type="button">Reception</button>
-                  <button aria-selected="false" class="venue-tab-btn flex-1 py-1.5 px-1.5 sm:px-2 rounded-full text-[10px] xs:text-[11px] sm:text-xs font-sans tracking-wide font-semibold transition-all duration-300 text-[#6b3844] hover:text-[#512732] hover:bg-[#f0dfea]/40 whitespace-nowrap" data-venue="groom" type="button">Groom's Home</button>
-                  <button aria-selected="false" class="venue-tab-btn flex-1 py-1.5 px-1.5 sm:px-2 rounded-full text-[10px] xs:text-[11px] sm:text-xs font-sans tracking-wide font-semibold transition-all duration-300 text-[#6b3844] hover:text-[#512732] hover:bg-[#f0dfea]/40 whitespace-nowrap" data-venue="bride" type="button">Bride's Home</button>
+            <div class="relative rounded-[28px] sm:rounded-[36px] p-1.5 sm:p-2 bg-gradient-to-b from-[#eecad4] via-[#f7e6eb] to-[#d698a8] shadow-[0_16px_40px_rgba(81,39,50,0.12)] flex flex-col">
+              <div class="w-full h-full rounded-[22px] sm:rounded-[30px] bg-white p-3 xs:p-4 sm:p-6 flex flex-col justify-between border border-[#eed6dc] relative overflow-hidden">
+                
+                <!-- Venue Tab Switcher -->
+                <div class="flex items-center justify-between gap-1 p-1 rounded-full bg-white border border-[#eed6dc] mb-2.5 sm:mb-3.5 max-w-xl mx-auto w-full shadow-sm" id="venue-tabs-bar" role="tablist">
+                  <button aria-selected="false" class="venue-tab-btn flex-1 py-1.5 px-2 rounded-full text-[11px] xs:text-xs font-sans tracking-wide font-semibold transition-all duration-300 text-[#512732] hover:text-[#3d1923] hover:bg-[#f0dfea]/40 whitespace-nowrap text-center cursor-pointer" data-venue="vivah" type="button">Wedding</button>
+                  <button aria-selected="false" class="venue-tab-btn flex-1 py-1.5 px-2 rounded-full text-[11px] xs:text-xs font-sans tracking-wide font-semibold transition-all duration-300 text-[#512732] hover:text-[#3d1923] hover:bg-[#f0dfea]/40 whitespace-nowrap text-center cursor-pointer" data-venue="reception" type="button">Reception</button>
+                  <button aria-selected="false" class="venue-tab-btn flex-1 py-1.5 px-2 rounded-full text-[11px] xs:text-xs font-sans tracking-wide font-semibold transition-all duration-300 text-[#512732] hover:text-[#3d1923] hover:bg-[#f0dfea]/40 whitespace-nowrap text-center cursor-pointer" data-venue="groom" type="button">Groom's Home</button>
+                  <button aria-selected="true" class="venue-tab-btn flex-1 py-1.5 px-2 rounded-full text-[11px] xs:text-xs font-sans tracking-wide font-semibold transition-all duration-300 bg-[#512732] text-white shadow-sm whitespace-nowrap text-center cursor-pointer" data-venue="bride" type="button">Bride's Home</button>
                 </div>
-                <div class="flex flex-col gap-1 sm:gap-2 mb-2 sm:mb-4 text-center sm:text-left min-h-[64px] sm:min-h-[85px] bg-[#faf6f8]/90 p-2.5 xs:p-3 sm:p-4 rounded-2xl border border-gold-400/20" id="venue-details-container">
-                  <div class="flex items-start gap-2.5 sm:gap-3 justify-center sm:justify-start">
-                    <div class="w-7 h-7 sm:w-9 sm:h-9 rounded-full bg-gold-400/20 border border-gold-400/40 flex items-center justify-center flex-shrink-0 text-gold-700 mt-0.5">
-                      <svg class="w-3.5 h-3.5 sm:w-4 sm:h-4" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
-                    </div>
-                    <div>
-                      <h4 class="font-serif text-base xs:text-lg sm:text-xl md:text-2xl font-bold text-[#512732] leading-snug" id="venue-name">Royal Mansion Banquet Hall</h4>
-                      <p class="font-serif text-[11px] xs:text-xs sm:text-sm md:text-base text-[#6b3844] leading-relaxed mt-0.5" id="venue-address">P&amp;T Chowk, Muzaffarpur, Bihar - 842002</p>
-                      <p class="font-serif italic text-[10px] xs:text-[11px] sm:text-xs md:text-sm text-[#6b3844] mt-0.5" id="venue-landmark">Landmark: P&amp;T Chowk (Royal Mansion Banquet Hall)</p>
-                    </div>
+
+                <!-- Venue Info Box -->
+                <div class="flex items-start gap-2.5 sm:gap-3.5 p-2.5 xs:p-3 sm:p-4 rounded-2xl bg-[#faf0f3] border border-[#f3dbe2] mb-2.5 sm:mb-3 text-center sm:text-left" id="venue-details-container">
+                  <div class="w-8 h-8 xs:w-9 xs:h-9 rounded-full bg-[#f4dbe2] flex items-center justify-center flex-shrink-0 text-[#512732] mt-0.5 shadow-sm">
+                    <svg class="w-4 h-4 text-[#512732]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                  </div>
+                  <div class="flex-1">
+                    <h4 class="font-sans font-bold text-[#421924] text-base xs:text-lg sm:text-xl leading-snug" id="venue-name">Bride's Residence (Maripur)</h4>
+                    <p class="font-sans text-[11px] xs:text-xs sm:text-sm text-[#512732] leading-relaxed mt-0.5" id="venue-address">Chitraguptapuri, Maripur, Near Shiv Mandir, Muzaffarpur, Bihar - 842001</p>
+                    <p class="font-sans italic text-[10px] xs:text-[11px] sm:text-xs text-[#7d525d] mt-0.5" id="venue-landmark">Landmark: Near Shiv Mandir, Maripur, Muzaffarpur</p>
                   </div>
                 </div>
-                <div class="relative rounded-2xl overflow-hidden border border-gold-400/40 bg-white p-1 my-1 sm:my-2 group">
-                  <div class="relative h-44 xs:h-52 sm:h-48 md:h-56 w-full rounded-xl overflow-hidden bg-[#faf6f8] flex items-center justify-center text-center">
-                    <div class="absolute inset-0 opacity-40 bg-[radial-gradient(#b9975b_1px,transparent_1px)] [background-size:16px_16px]"></div>
-                    <svg class="absolute inset-0 w-full h-full opacity-30 stroke-[#835f19]" fill="none" stroke-width="2.5"><path d="M-20 60 Q 140 80, 240 40 T 500 120"></path><path d="M80 -20 Q 120 100, 160 220"></path><path d="M220 220 Q 240 140, 340 60"></path></svg>
-                    <div class="relative z-10 flex flex-col items-center animate-bounce">
-                      <div class="w-10 h-10 sm:w-11 sm:h-11 rounded-full bg-[#512732] text-[#edd59e] border-2 border-gold-300 shadow-lg flex items-center justify-center">
-                        <svg class="w-5 h-5 sm:w-6 sm:h-6" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"></path></svg>
-                      </div>
-                      <span class="mt-1 font-serif text-[11px] sm:text-xs font-bold text-[#512732] bg-white/95 px-2.5 py-0.5 rounded shadow-sm border border-gold-300/40" id="venue-pin-badge">Royal Mansion Banquet</span>
-                    </div>
+
+                <!-- Interactive Google Map Embed Viewport -->
+                <div class="relative w-full h-[215px] xs:h-[240px] sm:h-[270px] md:h-[290px] rounded-2xl overflow-hidden border border-[#eed6dc] mb-2.5 sm:mb-3 shadow-inner bg-[#e5e3df]">
+                  <iframe id="venue-map-iframe" class="w-full h-full border-0" loading="lazy" allowfullscreen referrerpolicy="no-referrer-when-downgrade" src="https://maps.google.com/maps?q=Shiv+Mandir+Chitraguptapuri+Maripur+Muzaffarpur+Bihar+842001&amp;t=&amp;z=15&amp;ie=UTF8&amp;iwloc=&amp;output=embed"></iframe>
+                  
+                  <!-- Floating Pin Badge over Map matching reference -->
+                  <div class="absolute top-2.5 left-1/2 -translate-x-1/2 pointer-events-none z-10">
+                    <span class="inline-flex items-center gap-1.5 px-3 py-1 rounded-full bg-white/95 text-[#512732] text-[11px] sm:text-xs font-bold shadow-md border border-[#eecad4]">
+                      <svg class="w-3.5 h-3.5 text-[#db465d]" fill="currentColor" viewBox="0 0 24 24"><path d="M12 2C8.13 2 5 5.13 5 9c0 5.25 7 13 7 13s7-7.75 7-13c0-3.87-3.13-7-7-7zm0 9.5c-1.38 0-2.5-1.12-2.5-2.5s1.12-2.5 2.5-2.5 2.5 1.12 2.5 2.5-1.12 2.5-2.5 2.5z"/></svg>
+                      <span id="venue-pin-badge">Bride's Home</span>
+                    </span>
                   </div>
-                  <div class="absolute top-2 left-2 w-4 h-4 border-t-2 border-l-2 border-gold-600 pointer-events-none"></div>
-                  <div class="absolute top-2 right-2 w-4 h-4 border-t-2 border-r-2 border-gold-600 pointer-events-none"></div>
-                  <div class="absolute bottom-2 left-2 w-4 h-4 border-b-2 border-l-2 border-gold-600 pointer-events-none"></div>
-                  <div class="absolute bottom-2 right-2 w-4 h-4 border-b-2 border-r-2 border-gold-600 pointer-events-none"></div>
                 </div>
-                <div class="flex flex-col sm:flex-row gap-2 sm:gap-3 mt-2 sm:mt-4">
-                  <a class="flex-1 inline-flex items-center justify-center gap-2 px-5 py-2.5 xs:py-3 rounded-full border border-[#512732]/20 bg-white/95 hover:bg-[#faf6f8] text-[#512732] text-xs sm:text-sm font-sans font-semibold tracking-[0.18em] uppercase shadow-sm transition-all duration-300 hover:scale-[1.01] text-center" href="https://maps.google.com/?q=Royal+Mansion+Banquet+Hall+PT+Chowk+Muzaffarpur+Bihar+842002" id="venue-map-link" rel="noopener noreferrer" target="_blank">
-                    <svg class="w-4 h-4 text-[#a36f77] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2" viewBox="0 0 24 24"><polygon points="3 11 22 2 13 21 11 13 3 11"></polygon></svg>
+
+                <!-- Get Directions Button -->
+                <div class="w-full mt-0.5">
+                  <a class="w-full inline-flex items-center justify-center gap-2.5 py-2.5 xs:py-3 px-6 rounded-full border border-[#eecad4] bg-white hover:bg-[#fdf7f9] text-[#512732] text-xs sm:text-sm font-sans font-bold tracking-[0.16em] uppercase shadow-sm transition-all duration-300 hover:shadow-md text-center cursor-pointer" href="https://maps.google.com/?q=Chitraguptapuri+Maripur+Near+Shiv+Mandir+Muzaffarpur+Bihar+842001" id="venue-map-link" rel="noopener noreferrer" target="_blank">
+                    <svg class="w-4 h-4 text-[#512732] flex-shrink-0" fill="none" stroke="currentColor" stroke-width="2.2" viewBox="0 0 24 24"><line x1="22" y1="2" x2="11" y2="13"></line><polygon points="22 2 15 22 11 13 2 9 22 2"></polygon></svg>
                     <span id="venue-map-label">GET DIRECTIONS / GOOGLE MAPS</span>
                   </a>
                 </div>
+
               </div>
             </div>
           </div>
@@ -2651,14 +2653,16 @@
           name: 'Royal Mansion Banquet Hall',
           address: 'P&T Chowk, Muzaffarpur, Bihar - 842002',
           landmark: 'Landmark: Near P&T Chowk (Royal Mansion Banquet Hall)',
-          badge: 'Royal Mansion Banquet',
+          badge: 'Wedding Venue',
+          embedUrl: 'https://maps.google.com/maps?q=Royal+Mansion+Banquet+Hall+PT+Chowk+Muzaffarpur+Bihar+842002&t=&z=15&ie=UTF8&iwloc=&output=embed',
           mapsUrl: 'https://maps.google.com/?q=Royal+Mansion+Banquet+Hall+PT+Chowk+Muzaffarpur+Bihar+842002'
         },
         reception: {
           name: 'The Park Hotel',
           address: 'Jubba Sahni Park, Mithanpura, Muzaffarpur, Bihar - 842002',
           landmark: 'Landmark: Near Jubba Sahni Park, Mithanpura',
-          badge: 'The Park Hotel',
+          badge: 'Reception Venue',
+          embedUrl: 'https://maps.google.com/maps?q=The+Park+Hotel+Jubba+Sahni+Park+Mithanpura+Muzaffarpur+Bihar&t=&z=15&ie=UTF8&iwloc=&output=embed',
           mapsUrl: 'https://maps.google.com/?q=The+Park+Hotel+Jubba+Sahni+Park+Mithanpura+Muzaffarpur+Bihar'
         },
         groom: {
@@ -2666,6 +2670,7 @@
           address: 'New Shastri Nagar, Muzaffarpur, Kanauli Bishundat, Bihar 842002',
           landmark: 'Landmark: Near Chitragupta Mandir | Phone: 9939290931, 9504133083',
           badge: "Groom's Home",
+          embedUrl: 'https://maps.google.com/maps?q=Chitragupta+Mandir+New+Shastri+Nagar+Muzaffarpur+Bihar+842002&t=&z=15&ie=UTF8&iwloc=&output=embed',
           mapsUrl: 'https://maps.google.com/?q=New+Shastri+Nagar+Near+Chitragupta+Mandir+Kanauli+Bishundat+Muzaffarpur+Bihar+842002'
         },
         bride: {
@@ -2673,6 +2678,7 @@
           address: 'Chitraguptapuri, Maripur, Near Shiv Mandir, Muzaffarpur, Bihar - 842001',
           landmark: 'Landmark: Near Shiv Mandir, Maripur, Muzaffarpur',
           badge: "Bride's Home",
+          embedUrl: 'https://maps.google.com/maps?q=Shiv+Mandir+Chitraguptapuri+Maripur+Muzaffarpur+Bihar+842001&t=&z=15&ie=UTF8&iwloc=&output=embed',
           mapsUrl: 'https://maps.google.com/?q=Chitraguptapuri+Maripur+Near+Shiv+Mandir+Muzaffarpur+Bihar+842001'
         }
       };
@@ -2682,6 +2688,7 @@
       const addressEl = document.getElementById('venue-address');
       const landmarkEl = document.getElementById('venue-landmark');
       const badgeEl = document.getElementById('venue-pin-badge');
+      const mapIframe = document.getElementById('venue-map-iframe');
       const mapLink = document.getElementById('venue-map-link');
 
       function selectVenue(key) {
@@ -2692,15 +2699,16 @@
         if (addressEl) addressEl.textContent = data.address;
         if (landmarkEl) landmarkEl.textContent = data.landmark;
         if (badgeEl) badgeEl.textContent = data.badge;
+        if (mapIframe && data.embedUrl) mapIframe.src = data.embedUrl;
         if (mapLink) mapLink.href = data.mapsUrl;
 
         tabButtons.forEach(btn => {
           const isCurrent = btn.getAttribute('data-venue') === key;
           btn.setAttribute('aria-selected', isCurrent ? 'true' : 'false');
           if (isCurrent) {
-            btn.className = 'venue-tab-btn flex-1 py-1.5 px-1.5 sm:px-2 rounded-full text-[10px] xs:text-[11px] sm:text-xs font-sans tracking-wide font-semibold transition-all duration-300 bg-[#512732] text-[#fbf7ee] shadow-sm whitespace-nowrap';
+            btn.className = 'venue-tab-btn flex-1 py-1.5 px-2 rounded-full text-[11px] xs:text-xs font-sans tracking-wide font-semibold transition-all duration-300 bg-[#512732] text-white shadow-sm whitespace-nowrap text-center cursor-pointer';
           } else {
-            btn.className = 'venue-tab-btn flex-1 py-1.5 px-1.5 sm:px-2 rounded-full text-[10px] xs:text-[11px] sm:text-xs font-sans tracking-wide font-semibold transition-all duration-300 text-[#6b3844] hover:text-[#512732] hover:bg-[#f0dfea]/40 whitespace-nowrap';
+            btn.className = 'venue-tab-btn flex-1 py-1.5 px-2 rounded-full text-[11px] xs:text-xs font-sans tracking-wide font-semibold transition-all duration-300 text-[#512732] hover:text-[#3d1923] hover:bg-[#f0dfea]/40 whitespace-nowrap text-center cursor-pointer';
           }
         });
       }
